@@ -1,9 +1,9 @@
+import MovieCard from '@/components/MovieCard'
 import Image from 'next/image'
 
 export default async function Home() {
 
   const data = await getPopular()
-  console.log(data)
 
   return (
     <main>
@@ -11,7 +11,12 @@ export default async function Home() {
         <h1>Popular Movies</h1>
       </div>
       <div>
-        {data && data.results.map(movie => ( <p key={movie.id}>{movie.title}</p>))}
+        
+      </div>
+      <div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mx-10">
+        {data && data.results.map(movie => {
+          return <MovieCard key={movie.id} movie={movie} />
+        })}
       </div>
     </main>
   )
